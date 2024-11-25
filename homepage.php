@@ -1,5 +1,5 @@
 <?php
-$site_title = "Plant With Us";
+
 ?>
 
 <!DOCTYPE html>
@@ -7,7 +7,7 @@ $site_title = "Plant With Us";
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title><?php echo $site_title; ?></title>
+    <title> Plant With Us</title>
     <style>
         body {
             margin: 0;
@@ -21,7 +21,9 @@ $site_title = "Plant With Us";
             justify-content: space-between;
             align-items: center;
             padding: 10px 20px;
-            position: relative;
+            position: sticky;
+            top: 0;
+            z-index: 10;
         }
 
         header img {
@@ -31,22 +33,21 @@ $site_title = "Plant With Us";
         header .menu {
             font-size: 2rem;
             cursor: pointer;
-            display: none;
-            position: absolute;
-            top: 15px;
-            right: 20px;
+            display: block;
         }
 
         header .dropdown {
             display: none;
             position: absolute;
-            top: 40px;
+            top: 40px; 
             right: 20px;
             background-color: #7fc17f;
             border-radius: 5px;
             box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
             padding: 10px;
             width: 200px;
+            opacity: 0;
+            transition: opacity 0.3s ease-in-out;
         }
 
         header .dropdown a {
@@ -61,8 +62,9 @@ $site_title = "Plant With Us";
             background-color: #355e35;
         }
 
-        header .menu:hover + .dropdown {
+        header.active .dropdown {
             display: block;
+            opacity: 1;
         }
 
         .hero {
@@ -132,8 +134,8 @@ $site_title = "Plant With Us";
 </head>
 <body>
     <header>
-        <img src="logo.png" alt="Plant With Us Logo"> 
-        <div class="menu">&#8942;</div>
+        <img src="logo.png" alt="Plant With Us Logo">
+        <div class="menu" onclick="toggleDropdown()">&#8942;</div>
         <div class="dropdown">
             <a href="aboutus.php">About Us</a>
             <a href="forumpage.php">Community Forum</a>
@@ -147,7 +149,10 @@ $site_title = "Plant With Us";
             <div class="hero-content">
                 <img src="logo.png" alt="Plant With Us Logo">
                 <h1>PlantWithUs</h1>
-                <p>This Mobile Gardening App helps gardeners with tools like step-by-step planting guides, care reminders, and a community forum. It provides advice tailored to users' plants and conditions, making it beginner-friendly. The searchable plant care library offers quick access to information and grows over time to support more users without frequent updates.</p>
+                <p>This Mobile Gardening App helps gardeners with tools like step-by-step planting guides, 
+                    care reminders, and a community forum. It provides advice tailored to users' plants and 
+                    conditions, making it beginner-friendly. The searchable plant care library offers quick 
+                    access to information and grows over time to support more users without frequent updates.</p>
             </div>
         </div>
     </main>
@@ -162,14 +167,34 @@ $site_title = "Plant With Us";
             <a href="forumpage.php">QnA</a>
         </div>
         <div class="social-icons">
-        <a href="https://www.instagram.com" target=" ">
-            <img src="instagram.png" alt="Instagram">
-        </a>
-        <a href="https://www.facebook.com" target=" ">
-            <img src="facebook.png" alt="Facebook">
-        </a>
-    </div>
+            <a href="https://www.instagram.com" target="_blank">
+                <img src="instagram.png" alt="Instagram">
+            </a>
+            <a href="https://www.facebook.com" target="_blank">
+                <img src="facebook.png" alt="Facebook">
+            </a>
+        </div>
         <p>Reserved by Plant With Us Team</p>
     </footer>
+
+    <script>
+        function toggleDropdown() {
+            document.querySelector('header').classList.toggle('active');
+        }
+
+        window.addEventListener('click', function(e) {
+            const dropdown = document.querySelector('.dropdown');
+            const menu = document.querySelector('.menu');
+            const header = document.querySelector('header');
+            if (!header.contains(e.target)) {
+                header.classList.remove('active');
+            }
+        });
+
+        const header = document.querySelector('header');
+        header.addEventListener('mouseleave', function() {
+            header.classList.remove('active');
+        });
+    </script>
 </body>
 </html>
