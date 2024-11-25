@@ -3,9 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<<<<<<< Updated upstream
-=======
-<<<<<<< HEAD
+
     <title>Document</title>
     <style>
         header {
@@ -92,15 +90,5 @@
             header.classList.remove('active');
         });
     </script>
-=======
->>>>>>> Stashed changes
-    <title>Plant Page</title>
-</head>
-<body>
-    
-<<<<<<< Updated upstream
-=======
->>>>>>> b3406a00cb5f19c6452ee41ccbf0610f49ed8a5f
->>>>>>> Stashed changes
 </body>
 </html>
