@@ -11,7 +11,9 @@
         body {
             margin: 0;
             padding: 0;
-            background-color: #94c38f; /* Green background */
+            background-image: url('startbg.jpg'); 
+            background-size: cover; 
+            background-position: center; 
             height: 100vh;
             display: flex;
             justify-content: center;
@@ -19,9 +21,9 @@
         }
         .center-image {
             position: fixed;
-            width: 850px;
-            height: 850px;
-            background-image: url('bumi.png'); /* Replace with your image */
+            width: 1000px;
+            height: 500px;
+            background-image: url('bumibagus.png'); 
             background-size: cover;
             background-position: center;
             display: flex;
@@ -31,16 +33,16 @@
         .center-image button {
             padding: 20px 40px;
             font-size: 40px;
-            background-color: #94c38f; /* Semi-transparent background */
+            background-color: #94c38f; 
             color: white;
             border: none;
-            border-radius: 50px; /* Rounded corners */
+            border-radius: 50px; 
             cursor: pointer;
-            transition: background-color 0.3s ease;
+            transition: background-color 0.5s ease;
             font-family: 'Parkinsans';
         }
         .center-image button:hover {
-            background-color: white; /* Darken the button on hover */
+            background-color: white; 
             color: #94c38f;
         }
     </style>
