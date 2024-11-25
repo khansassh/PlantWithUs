@@ -15,70 +15,59 @@
             color: white;
         }
 
-        /* Navbar Styles */
-        nav {
-            position: sticky;
-            top: 0;
+        header {
+            background-color: #7fc17f;
             display: flex;
             justify-content: space-between;
             align-items: center;
-            background-color: rgba(148, 195, 143, 1);
-            padding: 20px 40px;
-            z-index: 100;
-        }
-        .logo img {
-            width: 70px;
-        }
-        .navbar-links {
-            list-style: none;
-            display: flex;
-            gap: 20px;
-        }
-        .navbar-links li {
-            position: relative; /* Makes the dropdown position relative to the parent */
-        }
-        .navbar-links a {
-            text-decoration: none;
-            color: white;
-            font-size: 18px;
-            transition: color 0.3s ease;
-        }
-        .navbar-links a:hover {
-            color: #94C38F; /* Change color on hover */
+            padding: 10px 20px;
+            position: sticky;
+            top: 0;
+            z-index: 10;
         }
 
-        /* Dropdown Styles */
-        .dropdown {
-            position: absolute;
-            background-color: rgba(148, 195, 143, 1);
-            top: 100%; /* Position dropdown below the parent element */
-            left: 0;
-            display: none;
-            padding: 10px;
-            border-radius: 5px;
-            width: 200px; /* Adjust the width of the dropdown */
-            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-            opacity: 0;
-            visibility: hidden;
-            transform: translateY(-10px);
-            transition: opacity 0.3s, transform 0.3s, visibility 0.3s;
+        header img {
+            height: 50px;
         }
-        .dropdown a {
+
+        header .menu {
+            font-size: 2rem;
+            cursor: pointer;
+            display: block;
+        }
+
+        header .dropdown {
+            display: none;
+            position: absolute;
+            top: 40px; 
+            right: 20px;
+            background-color: #7fc17f;
+            border-radius: 5px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            padding: 10px;
+            width: 200px;
+            opacity: 0;
+            transition: opacity 0.3s ease-in-out;
+        }
+
+        header .dropdown a {
+            color: white;
+            text-decoration: none;
             display: block;
             padding: 8px 15px;
-            transition: background-color 0.3s ease;
-        }
-        .dropdown a:hover {
-            background-color: rgba(148, 195, 143, 0.7); /* Subtle hover effect */
-        }
-        .navbar-links li:hover .dropdown {
-            display: block;
-            opacity: 1;
-            visibility: visible;
-            transform: translateY(0);
+            font-size: 1rem;
         }
 
-        /* About Us Section */
+        header .dropdown a:hover {
+            background-color: #355e35;
+        }
+
+        header.active .dropdown {
+            display: block;
+            opacity: 1;
+        }
+        
+        
         .about-container {
             background-color: #94C38F; /* New background color */
             display: flex;
@@ -106,7 +95,7 @@
             line-height: 1.6;
         }
 
-        /* Image Gallery */
+
         .image-gallery {
             display: flex;
             gap: 30px;
@@ -120,7 +109,7 @@
             object-fit: cover;
         }
 
-        /* Responsive Design */
+        
         @media (max-width: 768px) {
             .about-container {
                 padding: 20px;
@@ -139,43 +128,53 @@
     </style>
 </head>
 <body>
-
-    <!-- Navbar -->
-    <nav>
-        <div class="logo">
-            <img src="platwithuslogo.png" alt="Logo"> <!-- Replace with your logo image -->
+    <header>
+        <img src="logo.png" alt="Plant With Us Logo">
+        <div class="menu" onclick="toggleDropdown()">&#8942;</div>
+        <div class="dropdown">
+            <a href="aboutus.php">About Us</a>
+            <a href="forumpage.php">Community Forum</a>
+            <a href="homepage.php">Home Page</a>
+            <a href="searchpage.php">Plant With Us</a>
         </div>
-        <ul class="navbar-links">
-            <li>
-                <a href="#">Menu</a>
-                <div class="dropdown">
-                    <a href="home.html">Home</a>
-                    <a href="settings.html">Settings</a>
-                    <a href="profile.html">Profile</a>
-                    <a href="about.html">About Us</a>
-                    <a href="plant-with-us.html">Plant with Us</a>
-                    <a href="community-forum.html">Community Forum</a>
-                </div>
-            </li>
-        </ul>
-    </nav>
+    </header>
 
-    <!-- About Us Section -->
+   
     <div class="about-container">
         <h2>About Us</h2>
 
-        <!-- Image Gallery -->
+        
         <div class="image-gallery">
-            <img src="kalla.png" alt="Person 1"> <!-- Replace with your image -->
-            <img src="khansa.png" alt="Person 2"> <!-- Replace with your image -->
-            <img src="fali.png" alt="Person 3"> <!-- Replace with your image -->
+            <img src="kalla.png" alt="Person 1"> 
+            <img src="khansa.png" alt="Person 2"> 
+            <img src="fali.png" alt="Person 3"> 
         </div>
 
-        <!-- Description Paragraph -->
+        
         <p>
             In today’s world, creativity and curiosity drive us to explore new ideas, yet fear of failure often holds us back. To address this, we’re creating an app to guide and inspire users in plant care and gardening, offering clear, accessible guidance and encouragement. Designed for beginners, it provides a supportive space to learn, grow, and celebrate small successes. Beyond being a tool, the app fosters community and aims to empower individuals, organizations, and communities worldwide to embrace gardening with confidence and joy, making plant care achievable and rewarding for everyone.
         </p>
     </div>
+
+    <script>
+        function toggleDropdown() {
+            document.querySelector('header').classList.toggle('active');
+        }
+
+        window.addEventListener('click', function(e) {
+            const dropdown = document.querySelector('.dropdown');
+            const menu = document.querySelector('.menu');
+            const header = document.querySelector('header');
+            if (!header.contains(e.target)) {
+                header.classList.remove('active');
+            }
+        });
+
+        const header = document.querySelector('header');
+        header.addEventListener('mouseleave', function() {
+            header.classList.remove('active');
+        });
+    </script>
 
 </body>
 </html>

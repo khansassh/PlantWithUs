@@ -6,19 +6,19 @@
     <style>
         body {
             font-family: Arial, sans-serif;
-            background-image: url('backlogin.png'); /* Replace with your image URL */
-            background-size: cover; /* Ensures the image covers the entire page */
+            background-image: url('backlogin.png'); 
+            background-size: cover; 
             background-position: center;
             display: flex;
             justify-content: center;
             align-items: center;
             height: 100vh;
             margin: 0;
-            color: white; /* Sets default text color to white */
+            color: white; 
         }
         .container {
             text-align: center;
-            background-color: rgba(148, 195, 143, 1); /* Slightly transparent background color */
+            background-color: rgba(148, 195, 143, 1); 
             padding: 40px;
             border-radius: 12px;
             box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
@@ -41,8 +41,8 @@
             border-radius: 8px;
             font-size: 16px;
             box-sizing: border-box;
-            color: white; /* Set input text color to white */
-            background-color: rgba(0, 0, 0, 0.5); /* Dark background for inputs */
+            color: white; 
+            background-color: rgba(0, 0, 0, 0.5); 
         }
         input:focus {
             border-color: #ff6f61;

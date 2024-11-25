@@ -140,7 +140,7 @@
             <a href="aboutus.php">About Us</a>
             <a href="forumpage.php">Community Forum</a>
             <a href="homepage.php">Home Page</a>
-            <a href="plantpage.php">Plant With Us</a>
+            <a href="searchpage.php">Plant With Us</a>
         </div>
     </header>
 
