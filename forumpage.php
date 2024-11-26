@@ -1,12 +1,30 @@
+<?php
+session_start();
+if (!isset($_SESSION['user_id'])) {
+    header("Location: startpage.php"); // Redirect to login if not logged in
+    exit();
+}
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>Community Forum - Plant With Us</title>
     <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-image: url('backall.png'); /* Background image */
+            background-size: cover; /* Cover the entire viewport */
+            background-position: center; /* Center the image */
+            color: white; /* Default text color */
+        }
+
         header {
-            background-color: #7fc17f;
+            background-color: #7fc17f; /* Header background color */
             display: flex;
             justify-content: space-between;
             align-items: center;
@@ -56,6 +74,20 @@
             display: block;
             opacity: 1;
         }
+
+        .container {
+            background-color: rgba(255, 255, 255, 0.9); /* Semi-transparent white background */
+            color: black; /* Change text color to black for readability */
+            padding: 20px; /* Padding inside the container */
+            border-radius: 10px; /* Rounded corners */
+            max-width: 800px; /* Maximum width of the container */
+            margin: 50px auto; /* Centered with margin */
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2); /* Shadow for depth */
+        }
+
+        h1 {
+            color: #4CAF50; /* Header color */
+        }
     </style>
 </head>
 <body>
@@ -67,8 +99,24 @@
             <a href="forumpage.php">Community Forum</a>
             <a href="homepage.php">Home Page</a>
             <a href="searchpage.php">Plant With Us</a>
+            <a href="logout.php">Logout</a>
         </div>
     </header>
+
+    <div class="container">
+        <main>
+            <h1>Community Forum</h1>
+            <form method="post">
+                <label for="comment">Question and answer with other users:</label><br>
+                <textarea id="comment" name="comment" rows="4" cols="50" placeholder="PUT YOUR COMMENT IN HERE"></textarea><br><br>
+                <input type="submit" value="Submit">
+            </form>
+            <div>
+                <h2>Previous Comments</h2>
+                <!-- Here you can loop through and display previous comments from the database -->
+            </div>
+        </main>
+    </div>
 
     <script>
         function toggleDropdown() {
@@ -89,6 +137,5 @@
             header.classList.remove('active');
         });
     </script>
-    
 </body>
 </html>

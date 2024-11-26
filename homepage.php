@@ -1,6 +1,11 @@
 <?php
-
+session_start();
+if (!isset($_SESSION['user_id'])) {
+    header("Location: startpage.php"); // Redirect to login if not logged in
+    exit();
+}
 ?>
+
 
 <!DOCTYPE html>
 <html lang="en">
@@ -141,6 +146,7 @@
             <a href="forumpage.php">Community Forum</a>
             <a href="homepage.php">Home Page</a>
             <a href="searchpage.php">Plant With Us</a>
+            <a href="logout.php">Logout</a>
         </div>
     </header>
 
@@ -160,7 +166,7 @@
     <footer>
         <img src="logo.png" alt="Plant With Us Logo"> 
         <div>
-            <a href="plantpage.php">Plant With Us</a>
+            <a href="searchpage.php">Plant With Us</a>
             <a href="forumpage.php">Community Forum</a>
             <a href="homepage.php">Home Page</a>
             <a href="aboutus.php">About Us</a>
