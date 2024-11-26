@@ -15,9 +15,13 @@ if (!isset($_SESSION['user_id'])) {
     <title> Plant With Us</title>
     <style>
         body {
-            margin: 0;
             font-family: Arial, sans-serif;
-            background-color: #f0f5f3;
+            margin: 0;
+            padding: 0;
+            background-image: url('backall.png');
+            background-size: cover;
+            background-position: center;
+            color: white;
         }
 
         header {
