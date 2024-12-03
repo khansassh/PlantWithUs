@@ -1,94 +1,99 @@
+<?php
+include('db_config.php');
+
+$plant_id = isset($_GET['plant_id']) ? $_GET['plant_id'] : 0;
+
+$sql = "SELECT * FROM plants WHERE id = ?";
+$stmt = $conn->prepare($sql);
+$stmt->bind_param("i", $plant_id);
+$stmt->execute();
+$plant_result = $stmt->get_result();
+$plant = $plant_result->fetch_assoc();
+
+$sql_activities = "SELECT * FROM plant_activities WHERE plant_id = ? ORDER BY day ASC";
+$stmt_activities = $conn->prepare($sql_activities);
+$stmt_activities->bind_param("i", $plant_id);
+$stmt_activities->execute();
+$activities_result = $stmt_activities->get_result();
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
-    <title>Document</title>
+    <title><?php echo $plant['plant_name']; ?> Information</title>
     <style>
-        header {
-            background-color: #7fc17f;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            padding: 10px 20px;
-            position: sticky;
-            top: 0;
-            z-index: 10;
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f4;
+            margin: 0;
+            padding: 0;
         }
 
-        header img {
-            height: 50px;
-        }
-
-        header .menu {
-            font-size: 2rem;
-            cursor: pointer;
-            display: block;
-        }
-
-        header .dropdown {
-            display: none;
-            position: absolute;
-            top: 40px; 
-            right: 20px;
-            background-color: #7fc17f;
-            border-radius: 5px;
-            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-            padding: 10px;
-            width: 200px;
-            opacity: 0;
-            transition: opacity 0.3s ease-in-out;
-        }
-
-        header .dropdown a {
+        .header {
+            background-color: #4CAF50;
+            padding: 20px;
             color: white;
-            text-decoration: none;
-            display: block;
-            padding: 8px 15px;
-            font-size: 1rem;
+            text-align: center;
         }
 
-        header .dropdown a:hover {
-            background-color: #355e35;
+        .plant-info {
+            margin: 20px;
+            padding: 20px;
+            background-color: white;
+            border-radius: 5px;
         }
 
-        header.active .dropdown {
-            display: block;
-            opacity: 1;
+        .plant-info h2 {
+            margin: 0;
+            font-size: 2rem;
+        }
+
+        .activity-table {
+            width: 100%;
+            margin-top: 20px;
+            border-collapse: collapse;
+        }
+
+        .activity-table th, .activity-table td {
+            padding: 10px;
+            border: 1px solid #ddd;
+            text-align: left;
+        }
+
+        .activity-table th {
+            background-color: #7fc17f;
+            color: white;
         }
     </style>
 </head>
 <body>
-    <header>
-        <img src="logo.png" alt="Plant With Us Logo">
-        <div class="menu" onclick="toggleDropdown()">&#8942;</div>
-        <div class="dropdown">
-            <a href="aboutus.php">About Us</a>
-            <a href="forumpage.php">Community Forum</a>
-            <a href="homepage.php">Home Page</a>
-            <a href="searchpage.php">Plant With Us</a>
-        </div>
-    </header>
 
-    <script>
-        function toggleDropdown() {
-            document.querySelector('header').classList.toggle('active');
-        }
+<div class="header">
+    <h1><?php echo $plant['plant_name']; ?> Information</h1>
+</div>
 
-        window.addEventListener('click', function(e) {
-            const dropdown = document.querySelector('.dropdown');
-            const menu = document.querySelector('.menu');
-            const header = document.querySelector('header');
-            if (!header.contains(e.target)) {
-                header.classList.remove('active');
-            }
-        });
+<div class="plant-info">
+    <p><strong>Description:</strong> <?php echo $plant['plant_description']; ?></p>
 
-        const header = document.querySelector('header');
-        header.addEventListener('mouseleave', function() {
-            header.classList.remove('active');
-        });
-    </script>
+    <table class="activity-table">
+        <thead>
+            <tr>
+                <th>Day</th>
+                <th>Activity</th>
+            </tr>
+        </thead>
+        <tbody>
+            <?php while ($activity = $activities_result->fetch_assoc()): ?>
+                <tr>
+                    <td><?php echo $activity['day']; ?></td>
+                    <td><?php echo $activity['activity_description']; ?></td>
+                </tr>
+            <?php endwhile; ?>
+        </tbody>
+    </table>
+</div>
+
 </body>
 </html>

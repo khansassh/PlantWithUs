@@ -1,7 +1,7 @@
 <?php
 session_start();
 if (!isset($_SESSION['user_id'])) {
-    header("Location: startpage.php"); // Redirect to login if not logged in
+    header("Location: startpage.php"); 
     exit();
 }
 ?>
@@ -17,14 +17,14 @@ if (!isset($_SESSION['user_id'])) {
             font-family: Arial, sans-serif;
             margin: 0;
             padding: 0;
-            background-image: url('backall.png'); /* Background image */
-            background-size: cover; /* Cover the entire viewport */
-            background-position: center; /* Center the image */
-            color: white; /* Default text color */
+            background-image: url('backall.png');
+            background-size: cover; 
+            background-position: center;
+            color: white;
         }
 
         header {
-            background-color: #7fc17f; /* Header background color */
+            background-color: #7fc17f; 
             display: flex;
             justify-content: space-between;
             align-items: center;
@@ -76,17 +76,17 @@ if (!isset($_SESSION['user_id'])) {
         }
 
         .container {
-            background-color: rgba(255, 255, 255, 0.9); /* Semi-transparent white background */
-            color: black; /* Change text color to black for readability */
-            padding: 20px; /* Padding inside the container */
-            border-radius: 10px; /* Rounded corners */
-            max-width: 800px; /* Maximum width of the container */
-            margin: 50px auto; /* Centered with margin */
-            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2); /* Shadow for depth */
+            background-color: rgba(255, 255, 255, 0.9);
+            color: black; 
+            padding: 20px; 
+            border-radius: 10px; 
+            max-width: 800px; 
+            margin: 50px auto;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
         }
 
         h1 {
-            color: #4CAF50; /* Header color */
+            color: #4CAF50
         }
     </style>
 </head>
@@ -113,7 +113,7 @@ if (!isset($_SESSION['user_id'])) {
             </form>
             <div>
                 <h2>Previous Comments</h2>
-                <!-- Here you can loop through and display previous comments from the database -->
+              
             </div>
         </main>
     </div>

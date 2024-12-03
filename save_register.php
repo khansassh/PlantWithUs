@@ -2,22 +2,25 @@
 if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     $name = $_POST['name'];
     $email = $_POST['email'];
-    $password = $_POST['password']; // Store the password as plain text
+    $password = $_POST['password'];
 
-    // Database connection
-    $conn = new mysqli('localhost', 'root', '', 'plant_with_us');
+    $conn = new mysqli('localhost', 'root', '', 'PlantWithUs');
 
-    // Check connection
     if ($conn->connect_error) {
         die("Connection failed: " . $conn->connect_error);
     }
 
-    // Insert user into the database
     $sql = "INSERT INTO users (name, email, password) VALUES ('$name', '$email', '$password')";
     if ($conn->query($sql) === TRUE) {
-        echo "Registration successful! <a href='login.php'>Click here to login</a>";
+        echo "<script>
+            alert('Registration successful! Redirecting to login page.');
+            window.location.href='login.php';
+        </script>";
     } else {
-        echo "Error: " . $sql . "<br>" . $conn->error;
+        echo "<script>
+            alert('Error: Registration failed. Please try again.');
+            window.location.href='register.php';
+        </script>";
     }
 
     $conn->close();
