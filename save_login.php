@@ -3,7 +3,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     $email = $_POST['email'];
     $password = $_POST['password'];
 
-    $conn = new mysqli('localhost', 'root', '', 'PlantWithUs');
+    $conn = new mysqli('localhost', 'root', '', 'plant_with_us');
 
     if ($conn->connect_error) {
         die("Connection failed: " . $conn->connect_error);
