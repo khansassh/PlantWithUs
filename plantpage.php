@@ -33,11 +33,69 @@ $activities_result = $stmt_activities->get_result();
             padding: 0;
         }
 
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f4;
+            margin: 0;
+            padding: 0;
+        }
+
         .header {
-            background-color: #4CAF50;
-            padding: 20px;
+            display: flex;
+            justify-content: space-between; /* Distribute items across the width */
+            align-items: center; /* Vertically align items in the center */
+            padding: 15px 20px;
+            background-color: #94C38F;
+            position: sticky;
+            top: 0;
+            z-index: 10;
+            width: 100%;
+        }
+
+        .header h1 {
+            margin: 0;
+            font-size: 2rem;
             color: white;
-            text-align: center;
+            flex-grow: 1; /* Make sure the heading takes up available space */
+            text-align: center; /* Center the heading */
+        }
+
+        .menu {
+            font-size: 2rem;
+            cursor: pointer;
+            color: white;
+            padding: 5px;
+        }
+
+        .dropdown {
+            display: none;
+            position: absolute;
+            top: 50px; /* Position the dropdown slightly below the header */
+            right: 20px;
+            background-color: #7fc17f;
+            border-radius: 5px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            padding: 10px;
+            width: 200px;
+            opacity: 0;
+            transition: opacity 0.3s ease-in-out;
+        }
+
+        .dropdown a {
+            color: white;
+            text-decoration: none;
+            display: block;
+            padding: 8px 15px;
+            font-size: 1rem;
+        }
+
+        .dropdown a:hover {
+            background-color: #355e35;
+        }
+
+        .active .dropdown {
+            display: block;
+            opacity: 1;
         }
 
         .search-link {
@@ -47,11 +105,11 @@ $activities_result = $stmt_activities->get_result();
             font-weight: bold;
             margin: 10px 0;
             display: inline-block;
-            margin-left: 30px; 
+            margin-left: 30px;
         }
 
         .search-link:hover {
-            color: #006400;;
+            color: #006400;
         }
 
         .plant-info {
@@ -59,6 +117,7 @@ $activities_result = $stmt_activities->get_result();
             padding: 20px;
             background-color: white;
             border-radius: 5px;
+            position: relative;
         }
 
         .plant-info h2 {
@@ -87,8 +146,18 @@ $activities_result = $stmt_activities->get_result();
 <body>
 
 <div class="header">
+    <div class="menu" onclick="toggleDropdown()">&#8942;</div>
     <h1><?php echo $plant['plant_name']; ?> Information</h1>
+    <div class="dropdown">
+        <a href="aboutus.php">About Us</a>
+        <a href="forumpage.php">Community Forum</a>
+        <a href="homepage.php">Home Page</a>
+        <a href="searchpage.php">Plant With Us</a>
+        <a href="logout.php">Logout</a>
+    </div>
 </div>
+
+
 
 <!-- Link to search other plants -->
 <a href="searchpage.php" class="search-link">Search Other Plants</a>
@@ -120,6 +189,21 @@ $activities_result = $stmt_activities->get_result();
         </tbody>
     </table>
 </div>
+
+<script>
+    function toggleDropdown() {
+        document.querySelector('.header').classList.toggle('active');
+    }
+
+    window.addEventListener('click', function(e) {
+        const dropdown = document.querySelector('.dropdown');
+        const menu = document.querySelector('.menu');
+        const header = document.querySelector('.header');
+        if (!header.contains(e.target)) {
+            header.classList.remove('active');
+        }
+    });
+</script>
 
 </body>
 </html>
