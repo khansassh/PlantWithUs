@@ -45,11 +45,12 @@ $activities_result = $stmt_activities->get_result();
             justify-content: space-between; /* Distribute items across the width */
             align-items: center; /* Vertically align items in the center */
             padding: 15px 20px;
-            background-color: #94C38F;
+            background-color: #7fc17f;
             position: sticky;
             top: 0;
             z-index: 10;
             width: 100%;
+            box-sizing: border-box;
         }
 
         .header h1 {
@@ -65,11 +66,12 @@ $activities_result = $stmt_activities->get_result();
             cursor: pointer;
             color: white;
             padding: 5px;
+            margin-left: auto;
         }
 
         .dropdown {
             display: none;
-            position: absolute;
+            position: fixed;
             top: 50px; /* Position the dropdown slightly below the header */
             right: 20px;
             background-color: #7fc17f;
@@ -146,8 +148,9 @@ $activities_result = $stmt_activities->get_result();
 <body>
 
 <div class="header">
-    <div class="menu" onclick="toggleDropdown()">&#8942;</div>
+
     <h1><?php echo $plant['plant_name']; ?> Information</h1>
+    <div class="menu" onclick="toggleDropdown()">&#8942;</div>
     <div class="dropdown">
         <a href="aboutus.php">About Us</a>
         <a href="forumpage.php">Community Forum</a>
